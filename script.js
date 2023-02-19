@@ -28,6 +28,7 @@ function loadJSON() {
 
 function cleanData(jsonData) {
   jsonData.forEach(removeSpace);
+  jsonData.forEach(capitalize);
 
   console.log(jsonData);
 
@@ -40,6 +41,25 @@ function cleanData(jsonData) {
       } else {
         return false;
       }
+    }
+  }
+
+  function capitalize(jsonObject) {
+    jsonObject["fullname"] = capitalizeString(jsonObject["fullname"]);
+    jsonObject["gender"] = capitalizeString(jsonObject["gender"]);
+    jsonObject["house"] = capitalizeString(jsonObject["house"]);
+
+    function capitalizeString(string) {
+      let capitalized = string[0].toUpperCase();
+
+      for (let i = 1; i < string.length; i++) {
+        if (string[i - 1] === " " || string[i - 1] === "-") {
+          capitalized += string[i].toUpperCase();
+        } else {
+          capitalized += string[i].toLowerCase();
+        }
+      }
+      return capitalized;
     }
   }
 }
