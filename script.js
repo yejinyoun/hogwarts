@@ -24,8 +24,24 @@ function loadJSON() {
     });
 }
 
+// capitalize, remove spaces
+
 function cleanData(jsonData) {
+  jsonData.forEach(removeSpace);
+
   console.log(jsonData);
+
+  function removeSpace(jsonObject) {
+    jsonObject["fullname"] = jsonObject["fullname"].split(" ").filter(spaceFilter).join(" ").trim();
+
+    function spaceFilter(arrayElement) {
+      if (arrayElement !== "") {
+        return true;
+      } else {
+        return false;
+      }
+    }
+  }
 }
 
 function prepareObjects() {}
